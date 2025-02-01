@@ -17,7 +17,7 @@ Users select an object Objects, point the camera, and receive **guidance message
 
 1️⃣ **Clone the Repository**  
 ```sh
-git clone https://github.com/yourusername/object-detection-flutter.git
+git clone https://github.com/omarnffouri/object-detection-project
 cd object-detection-flutter
 flutter pub get
 
