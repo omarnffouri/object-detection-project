@@ -18,20 +18,52 @@ static const String route = '/result-screen';
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Detection Result')),
-      body: Column(
-        children: [
-          Expanded(child: Image.file(imageFile)),
-          Text("Detected Object: $detectedObject"),
-          Text("Timestamp: ${timestamp.toLocal()}"),
-          ElevatedButton(
-            onPressed: () => NavigationHelper.pushAndRemoveUntil(context,const ObjectSelectionScreen(), false),
-            child: const Text('Back'),
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.file(
+          imageFile,
+          fit: BoxFit.cover,
+        ),
+        Positioned(
+          bottom: 50,
+          left: 0,
+          right: 0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Detected Object: $detectedObject",
+                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Timestamp: ${timestamp.toLocal()}",
+                      style: const TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () => NavigationHelper.pushAndRemoveUntil(context, const ObjectSelectionScreen(), false),
+                child: const Text('Back'),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
+
 }
